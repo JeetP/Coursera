@@ -1,0 +1,37 @@
+Firstly:
+Conditional Variable:
+    Helding Locks and 'done' variable both are important.
+    Lock --> so that parent and child both don't intervene processes.
+
+    'Done' variable so that parent doesn't go to sleep because he wasn't knowing
+    child process started and ended before him.
+    For checking 'Done' we could use if-condition but we avoid that
+    and use while-condition --> why? Better explained in Consumer/Producer
+
+    Hold the lock while calling signal or wait
+
+Producer/Consumer:
+    Use while-loop not if-loop. Why?
+    Because it is possible that after if-loop verification variable state changes
+    due to existance of other threads
+    so we keep on checking if its good to go again
+
+    We want producer to wake consumer only and consumer producer only
+    So we need twoo types of conditional variables
+    one for consumer to wake producer other for vice-versa.
+
+Semaphore:
+    Can act as lock and also as Conditional Variable
+    Up/post increments the counter
+    Down/wait decrements the counter and blocks the calling thread if counter 
+    is negative
+
+    Usage:
+        sem_t m;
+        sem_init(&m,0,X);
+        sem_wait(&m);
+        sem_post(&m);
+
+Producer/Consumer:
+    Need two semaphores: One for producer other consumer
+    third to act as lock on shared buffer
