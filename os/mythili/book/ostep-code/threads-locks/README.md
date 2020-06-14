@@ -40,7 +40,7 @@ correct; the second call does not because the old value is wrong.
 
 To compile and run:
 ```sh
-prompt> gcc -o compare_and_swap compare_and_swap.c -Wall
+prompt> gcc -o compare-and-swap compare_and_swap.c -Wall
 prompt> ./compare_and_swap
 ```
 
